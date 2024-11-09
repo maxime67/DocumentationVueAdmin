@@ -1,14 +1,14 @@
 <script setup>
-import {RouterLink, RouterView} from 'vue-router'
-import HomeComponent from "@/components/HomeComponent.vue";
-import NavbarView from "@/views/NavbarView.vue";
+
+import TestComponent from "@/components/TestComponent.vue";
 </script>
 
 <template>
-  <NavbarView></NavbarView>
-<!--  <HomeComponent></HomeComponent>-->
-<RouterView></RouterView>
+  <TestComponent></TestComponent>
 </template>
 
 <style scoped>
+body{
+  background-color: red;
+}
 </style>
