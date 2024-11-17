@@ -1,29 +1,33 @@
 <script>
 import axios from "axios";
 
-const apiClient = axios.create({
-  headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
-  }
-});
 
-export const fetchData = async (error, loading, data, endpoint) => {
+
+export const fetchCategories = async (categories) => {
   try {
-    loading.value = true;
-    error.value = null;
+    const response = await axios.get(import.meta.env.VITE_APIURL + '/categories');
+    categories.value = response.data;
+  } catch (error) {
+    console.error('Error fetching categories:', error);
+  }
+};
 
-    try {
-      const response = await apiClient.get(import.meta.env.VITE_APIURL + endpoint);
-      data.value = response.data;
-    } catch (axiosError) {
-      console.log(import.meta.env.VITE_APIURL + endpoint)
-      console.log('fetch attempt failed', axiosError.message);
-    }
-
-  } catch (err) {
-    error.value = `Error loading data: ${err.message}`;
-    console.error('Error fetching data:', err);
+export const fetchData = async (loading, results, totalDocuments, selectedSubcategories) => {
+  loading.value = true;
+  try {
+    const response = await axios.get(
+        import.meta.env.VITE_APIURL + `/category${
+            selectedSubcategories.value.length
+                ? `?categories=${selectedSubcategories.value.join(',')}`
+                : ''
+        }`
+    );
+    results.value = response.data.results;
+    totalDocuments.value = response.data.totalDocuments;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  } finally {
+    loading.value = false;
   }
 };
 </script>
