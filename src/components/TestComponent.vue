@@ -1,5 +1,4 @@
 <template>
-  <NavbarView></NavbarView>
   <div class="flex min-h-screen bg-gray-100">
     <div
         v-if="isSidebarOpen"
@@ -123,7 +122,7 @@
         <div v-else>
           <div
               v-for="item in results"
-              :key="item.id"
+              :key="item._id"
               class="mb-6 bg-white rounded-lg p-4 shadow-sm"
           >
             <a :href="item.url">
@@ -137,6 +136,12 @@
                     <img class="w-16 rounded-md" :src="`../logo/${tag}.png`"/>
                   </div>
                 </div>
+                <RouterLink :to="`/update/documentation/${item._id}`" >
+                <div class="inline-flex items-center justify-center">
+                  <img class="w-6 rounded-md" :src="`../logo/modify.png`"/>
+                  <a>Update</a>
+                </div>
+                </RouterLink>
               </div>
             </a>
           </div>

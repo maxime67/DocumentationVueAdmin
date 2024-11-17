@@ -1,14 +1,13 @@
 <script setup>
 
-import TestComponent from "@/components/TestComponent.vue";
+import NavbarView from "@/views/NavbarView.vue";
 </script>
 
 <template>
-  <TestComponent></TestComponent>
+  <NavbarView></NavbarView>
+  <RouterView></RouterView>
 </template>
 
 <style scoped>
-body{
-  background-color: red;
-}
+
 </style>
